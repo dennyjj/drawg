@@ -58,6 +58,7 @@ class AnnotationWindowController: NSObject, NSWindowDelegate, AnnotationToolbarD
 
         window.title = "Drawg - Annotate"
         window.minSize = NSSize(width: 400, height: 300)
+        window.isReleasedWhenClosed = false
         window.delegate = self
 
         let containerView = NSView(frame: NSRect(x: 0, y: 0, width: windowWidth, height: windowHeight))

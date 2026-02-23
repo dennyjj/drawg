@@ -83,8 +83,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func showAnnotationEditor(with image: CGImage) {
         setActivationPolicy(.regular)
         annotationController = AnnotationWindowController(image: image, storageManager: storageManager) { [weak self] in
-            self?.annotationController = nil
-            self?.restoreActivationPolicyIfNeeded()
+            DispatchQueue.main.async {
+                self?.annotationController = nil
+                self?.restoreActivationPolicyIfNeeded()
+            }
         }
         annotationController?.window.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
@@ -96,8 +98,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             existing.window.makeKeyAndOrderFront(nil)
         } else {
             libraryController = LibraryWindowController(storageManager: storageManager) { [weak self] in
-                self?.libraryController = nil
-                self?.restoreActivationPolicyIfNeeded()
+                DispatchQueue.main.async {
+                    self?.libraryController = nil
+                    self?.restoreActivationPolicyIfNeeded()
+                }
             }
             libraryController?.window.makeKeyAndOrderFront(nil)
         }
@@ -110,8 +114,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             existing.window.makeKeyAndOrderFront(nil)
         } else {
             settingsController = SettingsWindowController { [weak self] in
-                self?.settingsController = nil
-                self?.restoreActivationPolicyIfNeeded()
+                DispatchQueue.main.async {
+                    self?.settingsController = nil
+                    self?.restoreActivationPolicyIfNeeded()
+                }
             }
             settingsController?.window.makeKeyAndOrderFront(nil)
         }

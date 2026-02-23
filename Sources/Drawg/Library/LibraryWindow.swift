@@ -29,6 +29,7 @@ class LibraryWindowController: NSObject, NSWindowDelegate {
 
         window.title = "Drawg - Library"
         window.minSize = NSSize(width: 400, height: 300)
+        window.isReleasedWhenClosed = false
         window.delegate = self
 
         let viewController = LibraryViewController(storageManager: storageManager)

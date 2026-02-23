@@ -28,6 +28,7 @@ class SettingsWindowController: NSObject, NSWindowDelegate {
         super.init()
 
         window.title = "Drawg - Settings"
+        window.isReleasedWhenClosed = false
         window.delegate = self
 
         let viewController = SettingsViewController()
