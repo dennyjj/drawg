@@ -20,6 +20,8 @@ bundle: build
 	@for bundle in $(BUILD_DIR)/*.bundle; do \
 		[ -d "$$bundle" ] && cp -R "$$bundle" "$(APP_DIR)/Contents/Resources/"; \
 	done
+	@# Ad-hoc codesign for stable identity (screen recording permission persists across installs)
+	codesign --force --sign - --identifier com.drawg.app "$(APP_DIR)"
 	@echo "App bundle created at $(APP_DIR)"
 
 install: bundle

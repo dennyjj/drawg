@@ -88,6 +88,10 @@ class AnnotationWindowController: NSObject, NSWindowDelegate, AnnotationToolbarD
         canvasView.onSaveRequested = { [weak self] in self?.saveAndCopy() }
         updateToolColors(.red)
         updateToolStrokeWidth(3.0)
+
+        // Make canvas the first responder so it receives keyDown events (Cmd+S, Cmd+Z)
+        window.initialFirstResponder = canvasView
+        window.makeFirstResponder(canvasView)
     }
 
     func saveAndCopy() {
