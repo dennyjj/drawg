@@ -13,10 +13,7 @@ let package = Package(
         .executableTarget(
             name: "Drawg",
             dependencies: ["KeyboardShortcuts"],
-            path: "Sources/Drawg",
-            resources: [
-                .copy("../../Resources/Info.plist")
-            ]
+            path: "Sources/Drawg"
         )
     ]
 )

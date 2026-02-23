@@ -16,6 +16,10 @@ bundle: build
 	mkdir -p "$(APP_DIR)/Contents/Resources"
 	cp "$(BUILD_DIR)/Drawg" "$(APP_DIR)/Contents/MacOS/$(PRODUCT_NAME)"
 	cp "Resources/Info.plist" "$(APP_DIR)/Contents/Info.plist"
+	@# Copy SPM resource bundles (KeyboardShortcuts localization, etc.)
+	@for bundle in $(BUILD_DIR)/*.bundle; do \
+		[ -d "$$bundle" ] && cp -R "$$bundle" "$(APP_DIR)/Contents/Resources/"; \
+	done
 	@echo "App bundle created at $(APP_DIR)"
 
 install: bundle

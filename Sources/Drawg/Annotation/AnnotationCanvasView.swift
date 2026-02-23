@@ -7,6 +7,7 @@ class AnnotationCanvasView: NSView {
     private var currentTool: AnnotationTool?
 
     var onAnnotationsChanged: (() -> Void)?
+    var onSaveRequested: (() -> Void)?
 
     init(frame: NSRect, image: CGImage) {
         self.baseImage = image
@@ -116,6 +117,9 @@ class AnnotationCanvasView: NSView {
                 } else {
                     undo()
                 }
+                return
+            case "s":
+                onSaveRequested?()
                 return
             default:
                 break

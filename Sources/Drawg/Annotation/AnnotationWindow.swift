@@ -85,6 +85,7 @@ class AnnotationWindowController: NSObject, NSWindowDelegate, AnnotationToolbarD
         annotationToolbar.delegate = self
 
         canvasView.setTool(penTool)
+        canvasView.onSaveRequested = { [weak self] in self?.saveAndCopy() }
         updateToolColors(.red)
         updateToolStrokeWidth(3.0)
     }

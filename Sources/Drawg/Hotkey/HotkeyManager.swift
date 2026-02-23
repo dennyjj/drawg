@@ -2,7 +2,7 @@ import AppKit
 import KeyboardShortcuts
 
 extension KeyboardShortcuts.Name {
-    static let captureScreenshot = Self("captureScreenshot", default: .init(.d, modifiers: [.command, .shift]))
+    static let captureScreenshot = Self("captureScreenshot", default: .init(.d, modifiers: [.command, .control]))
 }
 
 class HotkeyManager {

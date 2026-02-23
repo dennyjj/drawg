@@ -3,7 +3,6 @@ import AppKit
 class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusBarController: StatusBarController!
     private var hotkeyManager: HotkeyManager!
-    private var permissionsManager: PermissionsManager!
     private var screenCaptureManager: ScreenCaptureManager!
     private var storageManager: StorageManager!
     private var annotationController: AnnotationWindowController?
@@ -13,7 +12,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         storageManager = StorageManager()
-        permissionsManager = PermissionsManager()
         screenCaptureManager = ScreenCaptureManager()
 
         statusBarController = StatusBarController(
@@ -70,10 +68,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     guard let self = self else { return }
                     if let image = image {
                         self.showAnnotationEditor(with: image)
-                    } else {
-                        // Capture failed — likely a permissions issue
-                        self.permissionsManager.requestScreenRecordingPermission()
                     }
+                    // If nil, the system permission dialog was shown — user can try again after granting
                 }
             }
         }
