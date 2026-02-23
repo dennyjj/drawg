@@ -19,6 +19,8 @@ make clean                # Clean build artifacts
 
 **Must test as .app bundle** — `swift run` won't work properly (no bundle ID = no screen recording permission, no menu bar behavior, no hotkey).
 
+**After finishing code changes, always run `make install` so the user can test immediately.**
+
 ## Architecture
 
 **Tech stack:** Swift + AppKit (no SwiftUI), SPM (no Xcode project), ScreenCaptureKit, KeyboardShortcuts (sindresorhus).
