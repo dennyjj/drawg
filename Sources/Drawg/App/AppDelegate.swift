@@ -118,6 +118,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.activate(ignoringOtherApps: true)
     }
 
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return false
+    }
+
     private func setActivationPolicy(_ policy: NSApplication.ActivationPolicy) {
         NSApp.setActivationPolicy(policy)
     }
