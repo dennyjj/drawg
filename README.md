@@ -1,4 +1,4 @@
-# Drawg
+# Drawg - drag and draw on macOS
 
 A lightweight screenshot & annotation tool for macOS. Lives in your menu bar, captures screen regions with a global hotkey, and lets you draw on them before saving.
 

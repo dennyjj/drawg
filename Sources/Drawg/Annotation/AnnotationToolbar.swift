@@ -48,6 +48,7 @@ class AnnotationToolbar: NSView {
             (.rectangle, "rectangle", "Rectangle"),
             (.arrow, "arrow.right", "Arrow"),
             (.text, "textformat", "Text"),
+            (.eraser, "eraser", "Eraser"),
         ]
 
         for (type, iconName, tooltip) in tools {
@@ -132,7 +133,7 @@ class AnnotationToolbar: NSView {
     }
 
     @objc private func toolButtonClicked(_ sender: NSButton) {
-        let types: [AnnotationType] = [.pen, .rectangle, .arrow, .text]
+        let types: [AnnotationType] = [.pen, .rectangle, .arrow, .text, .eraser]
         guard sender.tag >= 0 && sender.tag < types.count else { return }
         selectedTool = types[sender.tag]
         updateToolSelection()

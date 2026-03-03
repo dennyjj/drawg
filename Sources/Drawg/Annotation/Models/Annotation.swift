@@ -5,6 +5,7 @@ enum AnnotationType {
     case rectangle
     case arrow
     case text
+    case eraser
 }
 
 class Annotation {
@@ -60,6 +61,9 @@ class Annotation {
                 .foregroundColor: color
             ]
             text.draw(in: rect, withAttributes: attributes)
+
+        case .eraser:
+            break
         }
     }
 

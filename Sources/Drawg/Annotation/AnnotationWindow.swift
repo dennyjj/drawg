@@ -11,6 +11,7 @@ class AnnotationWindowController: NSObject, NSWindowDelegate, AnnotationToolbarD
     private var rectangleTool = RectangleTool()
     private var arrowTool = ArrowTool()
     private var textTool = TextTool()
+    private var eraserTool = EraserTool()
 
     init(image: CGImage, storageManager: StorageManager, onClose: @escaping () -> Void) {
         self.storageManager = storageManager
@@ -128,6 +129,7 @@ class AnnotationWindowController: NSObject, NSWindowDelegate, AnnotationToolbarD
         rectangleTool.color = color
         arrowTool.color = color
         textTool.color = color
+        eraserTool.color = color
     }
 
     private func updateToolStrokeWidth(_ width: CGFloat) {
@@ -135,6 +137,7 @@ class AnnotationWindowController: NSObject, NSWindowDelegate, AnnotationToolbarD
         rectangleTool.strokeWidth = width
         arrowTool.strokeWidth = width
         textTool.strokeWidth = width
+        eraserTool.strokeWidth = width
     }
 
     // MARK: - NSWindowDelegate
@@ -155,6 +158,8 @@ class AnnotationWindowController: NSObject, NSWindowDelegate, AnnotationToolbarD
             canvasView.setTool(arrowTool)
         case .text:
             canvasView.setTool(textTool)
+        case .eraser:
+            canvasView.setTool(eraserTool)
         }
     }
 
