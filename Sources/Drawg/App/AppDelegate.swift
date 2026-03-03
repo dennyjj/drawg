@@ -38,6 +38,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func startCapture() {
+        if !CGPreflightScreenCaptureAccess() {
+            CGRequestScreenCaptureAccess()
+            showPermissionAlert()
+            return
+        }
+
         regionSelectionWindows.forEach { $0.close() }
         regionSelectionWindows.removeAll()
 
@@ -136,5 +142,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if annotationController == nil && libraryController == nil && settingsController == nil {
             setActivationPolicy(.accessory)
         }
+    }
+
+    private func showPermissionAlert() {
+        setActivationPolicy(.regular)
+        NSApp.activate(ignoringOtherApps: true)
+        let alert = NSAlert()
+        alert.messageText = "Screen Recording Permission Required"
+        alert.informativeText = "Drawg needs screen recording permission to capture screenshots.\n\nAfter granting permission in System Settings, please quit and relaunch Drawg for it to take effect."
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Open System Settings")
+        alert.addButton(withTitle: "Cancel")
+        if alert.runModal() == .alertFirstButtonReturn {
+            if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture") {
+                NSWorkspace.shared.open(url)
+            }
+        }
+        restoreActivationPolicyIfNeeded()
     }
 }
